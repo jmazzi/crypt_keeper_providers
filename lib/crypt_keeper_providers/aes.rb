@@ -23,7 +23,8 @@ module CryptKeeperProviders
       value = value.to_s
       aes.encrypt
       aes.key = key
-      Base64::encode64(aes.update(value) + aes.final)
+      iv = rand.to_s
+      Base64::encode64("#{iv}:#{aes.update(value) + aes.final}")
     end
 
     # Public: Decrypt a string
@@ -31,6 +32,7 @@ module CryptKeeperProviders
     # Returns a string
     def decrypt(value)
       value = Base64::decode64(value.to_s)
+      iv, value = value.split(':')
       aes.decrypt
       aes.key = key
       aes.update(value) + aes.final
