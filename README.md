@@ -1,6 +1,6 @@
 # CryptKeeperProviders
 
-TODO: Write a gem description
+Provides encryption classes for use with [crypt_keeper](https://github.com/jmazzi/crypt_keeper)
 
 ## Installation
 
