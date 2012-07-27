@@ -10,7 +10,7 @@ module CryptKeeperProviders
     #
     #   options - A hash of options. :passphrase is required
     def initialize(options = {})
-      @key         = options.delete :passphrase
+      @key         = options[:passphrase]
       @aes         = ::OpenSSL::Cipher::Cipher.new("AES-256-CBC")
       @aes.padding = 1
       @key         = Digest::SHA1.hexdigest(key).unpack('a2'*32).map{|x|x.hex}.pack('c'*32)
