@@ -4,6 +4,8 @@ require 'base64'
 
 module CryptKeeperProviders
   class Aes
+    SEPARATOR = ":crypt_keeper:"
+
     attr_accessor :key, :aes
 
     # Public: Initializes the class
@@ -25,7 +27,7 @@ module CryptKeeperProviders
       aes.key = key
       iv = rand.to_s
       aes.iv = iv
-      Base64::encode64("#{iv}:#{aes.update(value) + aes.final}")
+      Base64::encode64("#{iv}#{SEPARATOR}#{aes.update(value) + aes.final}")
     end
 
     # Public: Decrypt a string
@@ -33,7 +35,7 @@ module CryptKeeperProviders
     # Returns a string
     def decrypt(value)
       value = Base64::decode64(value.to_s)
-      iv, value = value.split(':')
+      iv, value = value.split(SEPARATOR)
       aes.decrypt
       aes.key = key
       aes.iv = iv
