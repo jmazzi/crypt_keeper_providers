@@ -1,4 +1,4 @@
-require 'crypt_keeper'
+require 'crypt_keeper_providers'
 
 SPEC_ROOT = Pathname.new File.expand_path File.dirname __FILE__
 Dir[SPEC_ROOT.join('support/*.rb')].each{|f| require f }
