@@ -1,3 +1,5 @@
+[![Build Status](https://secure.travis-ci.org/jmazzi/crypt_keeper_providers.png?branch=master)](http://travis-ci.org/jmazzi/crypt_keeper_providers)
+
 # CryptKeeperProviders
 
 Provides encryption classes for use with [crypt_keeper](https://github.com/jmazzi/crypt_keeper)
