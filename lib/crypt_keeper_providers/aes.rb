@@ -13,7 +13,7 @@ module CryptKeeperProviders
       @key         = options[:passphrase]
       @aes         = ::OpenSSL::Cipher::Cipher.new("AES-256-CBC")
       @aes.padding = 1
-      @key         = Digest::SHA1.hexdigest(key).unpack('a2'*32).map{|x|x.hex}.pack('c'*32)
+      @key         = Digest::SHA256.digest(key)
     end
 
     # Public: Encrypt a string
@@ -24,6 +24,7 @@ module CryptKeeperProviders
       aes.encrypt
       aes.key = key
       iv = rand.to_s
+      aes.iv = iv
       Base64::encode64("#{iv}:#{aes.update(value) + aes.final}")
     end
 
@@ -35,6 +36,7 @@ module CryptKeeperProviders
       iv, value = value.split(':')
       aes.decrypt
       aes.key = key
+      aes.iv = iv
       aes.update(value) + aes.final
     end
   end

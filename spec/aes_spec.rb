@@ -6,7 +6,7 @@ module CryptKeeperProviders
 
     describe "#initialize" do
       let(:hexed_key) do
-        Digest::SHA1.hexdigest('cake').unpack('a2'*32).map{|x|x.hex}.pack('c'*32)
+        Digest::SHA256.digest('cake')
       end
 
       it "should extract the key and digest it" do
@@ -28,7 +28,7 @@ module CryptKeeperProviders
 
     describe "#decrypt" do
       let(:decrypted) do
-        subject.decrypt "MC4xODk0NzkyNjkzMTYyMjE4Mzp24QC8s9qRJU9HHbIZKY/x\n"
+        subject.decrypt "MC43OTY2ODQyNDQ3NTY5MjEyOqSiE883orEdXscCaeh2sKo=\n"
       end
 
       it "should decrypt the string" do
