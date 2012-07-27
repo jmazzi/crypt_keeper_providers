@@ -14,4 +14,6 @@ Gem::Specification.new do |gem|
   gem.name          = "crypt_keeper_providers"
   gem.require_paths = ["lib"]
   gem.version       = CryptKeeperProviders::VERSION
+
+  gem.add_development_dependency 'rspec', '~> 2.10.0'
 end
