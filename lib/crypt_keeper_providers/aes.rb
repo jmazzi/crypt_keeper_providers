@@ -1,10 +1,16 @@
-require 'digest/sha1'
+require 'digest/sha2'
 require 'openssl'
 require 'base64'
 
 module CryptKeeperProviders
   class Aes
-    attr_accessor :key, :aes
+    SEPARATOR = ":crypt_keeper:"
+
+    # Public: The encryption key
+    attr_accessor :key
+
+    # Public: An instance of  OpenSSL::Cipher::Cipher
+    attr_accessor :aes
 
     # Public: Initializes the class
     #
@@ -20,23 +26,21 @@ module CryptKeeperProviders
     #
     # Returns a string
     def encrypt(value)
-      value = value.to_s
       aes.encrypt
       aes.key = key
-      iv = rand.to_s
-      aes.iv = iv
-      Base64::encode64("#{iv}:#{aes.update(value) + aes.final}")
+      iv      = rand.to_s
+      aes.iv  = iv
+      Base64::encode64("#{iv}#{SEPARATOR}#{aes.update(value.to_s) + aes.final}")
     end
 
     # Public: Decrypt a string
     #
     # Returns a string
     def decrypt(value)
-      value = Base64::decode64(value.to_s)
-      iv, value = value.split(':')
+      iv, value = Base64::decode64(value.to_s).split(SEPARATOR)
       aes.decrypt
       aes.key = key
-      aes.iv = iv
+      aes.iv  = iv
       aes.update(value) + aes.final
     end
   end

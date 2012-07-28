@@ -28,7 +28,7 @@ module CryptKeeperProviders
 
     describe "#decrypt" do
       let(:decrypted) do
-        subject.decrypt "MC43OTY2ODQyNDQ3NTY5MjEyOqSiE883orEdXscCaeh2sKo=\n"
+        subject.decrypt "MC41MDk5MjI2NjgxMDI1MDI2OmNyeXB0X2tlZXBlcjpPI/8dCqWXDMVj7Jqs\nuwf/\n"
       end
 
       it "should decrypt the string" do
