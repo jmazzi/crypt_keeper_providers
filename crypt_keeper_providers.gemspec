@@ -19,9 +19,13 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'guard', '~> 1.2.0'
   gem.add_development_dependency 'guard-rspec', '~> 1.1.0'
   gem.add_development_dependency 'rake', '~> 0.9.2.2'
-  gem.add_development_dependency 'jruby-openssl', '~> 0.7.7' if RUBY_PLATFORM == 'java'
   gem.add_development_dependency 'activerecord', '>= 3.0'
-  gem.add_development_dependency 'activesupport', '>= 3.0'
-  gem.add_development_dependency 'pg'
+  gem.add_development_dependency 'appraisal', '~> 0.4.1'
 
+  if RUBY_PLATFORM == 'java'
+    gem.add_development_dependency 'jruby-openssl', '~> 0.7.7'
+    gem.add_development_dependency 'activerecord-jdbcpostgresql-adapter'
+  else
+    gem.add_development_dependency 'pg', '~> 0.14.0'
+  end
 end
