@@ -1,4 +1,4 @@
-require 'digest/sha1'
+require 'digest/sha2'
 require 'openssl'
 require 'base64'
 
