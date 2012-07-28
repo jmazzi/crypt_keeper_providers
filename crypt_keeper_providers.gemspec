@@ -21,6 +21,7 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'rake', '~> 0.9.2.2'
   gem.add_development_dependency 'jruby-openssl', '~> 0.7.7' if RUBY_PLATFORM == 'java'
   gem.add_development_dependency 'activerecord', '>= 3.0'
+  gem.add_development_dependency 'activesupport', '>= 3.0'
   gem.add_development_dependency 'pg'
 
 end

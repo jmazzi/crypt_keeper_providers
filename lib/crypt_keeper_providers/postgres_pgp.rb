@@ -1,3 +1,5 @@
+require 'crypt_keeper_providers/postgres_pgp_log_subscriber'
+
 module CryptKeeperProviders
   class PostgresPgp
     attr_accessor :key
