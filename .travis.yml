@@ -5,7 +5,8 @@ gemfile:
   - gemfiles/activerecord_3_2.gemfile
 before_script:
   - cp spec/default.database.yml spec/database.yml
-  - psql -c 'create database crypt_keeper_providers;' -U postgres
+  - psql -c 'CREATE DATABASE crypt_keeper_providers;' -U postgres
+  - psql -c 'CREATE EXTENSION IF NOT EXISTS pgcrypto;' -U postgres
 notifications:
   email:
     recipients:
