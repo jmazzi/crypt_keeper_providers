@@ -4,5 +4,5 @@ test:
   reconnect: false
   database: crypt_keeper_providers
   pool: 5
-  username: justin
+  username: postgres
   password:
