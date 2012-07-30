@@ -2,7 +2,7 @@ require 'spec_helper'
 
 module CryptKeeperProviders
   describe Aes do
-    subject { Aes.new(passphrase: 'cake') }
+    subject { Aes.new(key: 'cake') }
 
     describe "#initialize" do
       let(:hexed_key) do
@@ -11,6 +11,10 @@ module CryptKeeperProviders
 
       it "should extract the key and digest it" do
         subject.key.should == hexed_key
+      end
+
+      it "should raise an exception with a missing key" do
+        expect { Aes.new }.to raise_error(ArgumentError, "Missing :key")
       end
     end
 

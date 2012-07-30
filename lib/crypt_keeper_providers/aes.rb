@@ -14,12 +14,16 @@ module CryptKeeperProviders
 
     # Public: Initializes the class
     #
-    #   options - A hash of options. :passphrase is required
+    #   options - A hash of options. :key is required
     def initialize(options = {})
-      @key         = options[:passphrase]
       @aes         = ::OpenSSL::Cipher::Cipher.new("AES-256-CBC")
       @aes.padding = 1
-      @key         = Digest::SHA256.digest(key)
+
+      key = options.fetch(:key) do
+        raise ArgumentError, "Missing :key"
+      end
+
+      @key = Digest::SHA256.digest(key)
     end
 
     # Public: Encrypt a string
