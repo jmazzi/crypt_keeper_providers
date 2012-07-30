@@ -1,4 +1,4 @@
-require 'crypt_keeper_providers/postgres_pgp_log_subscriber'
+require 'crypt_keeper_providers/postgres_pgp/log_subscriber'
 
 module CryptKeeperProviders
   class PostgresPgp
