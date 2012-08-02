@@ -15,7 +15,7 @@ module CryptKeeperProviders
     end
 
     it "filters mysql aes functions" do
-      subject.should_receive(:sql_without_mysql_aes).with do |event|
+      subject.should_receive(:sql_without_mysql_aes) do |event|
         event.payload[:sql].should == output_query
       end
 
