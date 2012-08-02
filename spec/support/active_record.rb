@@ -9,7 +9,15 @@ module CryptKeeperProviders
     def use_postgres
       before :all do
         config = YAML.load_file SPEC_ROOT.join('database.yml')
-        ::ActiveRecord::Base.establish_connection(config['test'])
+        ::ActiveRecord::Base.establish_connection(config['postgres'])
+        ::ActiveRecord::Base.logger = Logger.new SPEC_ROOT.join('debug.log').to_s
+      end
+    end
+
+    def use_mysql
+      before :all do
+        config = YAML.load_file SPEC_ROOT.join('database.yml')
+        ::ActiveRecord::Base.establish_connection(config['mysql'])
         ::ActiveRecord::Base.logger = Logger.new SPEC_ROOT.join('debug.log').to_s
       end
     end

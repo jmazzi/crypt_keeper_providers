@@ -1,4 +1,4 @@
-test:
+postgres:
   adapter: postgresql
   encoding: utf8
   reconnect: false
@@ -6,3 +6,12 @@ test:
   pool: 5
   username: postgres
   password:
+mysql:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: crypt_keeper_providers
+  pool: 5
+  username: root
+  password:
+

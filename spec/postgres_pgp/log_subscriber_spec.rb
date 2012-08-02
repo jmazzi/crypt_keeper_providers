@@ -15,7 +15,7 @@ module CryptKeeperProviders
     end
 
     it "filters pgp functions" do
-      subject.should_receive(:sql_without_filter).with do |event|
+      subject.should_receive(:sql_without_postgres_pgp).with do |event|
         event.payload[:sql].should == output_query
       end
 
