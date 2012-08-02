@@ -1,4 +1,5 @@
 require 'crypt_keeper_providers/mysql_aes/log_subscriber'
+require 'base64'
 
 module CryptKeeperProviders
   class MysqlAes
@@ -17,6 +18,7 @@ module CryptKeeperProviders
     #
     # Returns an encrypted string
     def encrypt(value)
+      value = Base64.encode64(value)
       escape_and_execute_sql(["SELECT AES_ENCRYPT(?, ?)", value, key]).first
     end
 
@@ -24,6 +26,7 @@ module CryptKeeperProviders
     #
     # Returns a plaintext string
     def decrypt(value)
+      value = Base64.decode64(value)
       escape_and_execute_sql(["SELECT AES_DECRYPT(?, ?)", value, key]).first
     end
 

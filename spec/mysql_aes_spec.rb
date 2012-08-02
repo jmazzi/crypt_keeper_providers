@@ -5,13 +5,7 @@ module CryptKeeperProviders
     use_mysql
 
     let(:plain_text) { 'test' }
-
-    # MySQL stores AES encrypted strings in binary which you can't paste
-    # into a spec :). This is a Base64 encoded string of 'test' AES encrypted
-    # by AES_ENCRYPT()
-    let(:cipher_text) do
-      Base64.decode64 "nbKOoWn8kvAw9k/C2Mex6Q==\n"
-    end
+    let(:cipher_text) { "nbKOoWn8kvAw9k/C2Mex6Q==\n" }
 
     subject { MysqlAes.new key: 'candy' }
 
