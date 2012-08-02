@@ -25,7 +25,9 @@ Gem::Specification.new do |gem|
   if RUBY_PLATFORM == 'java'
     gem.add_development_dependency 'jruby-openssl', '~> 0.7.7'
     gem.add_development_dependency 'activerecord-jdbcpostgresql-adapter'
+    gem.add_development_dependency 'activerecord-jdbcmysql-adapter'
   else
     gem.add_development_dependency 'pg', '~> 0.14.0'
+    gem.add_development_dependency 'mysql2', '~> 0.3.11'
   end
 end
