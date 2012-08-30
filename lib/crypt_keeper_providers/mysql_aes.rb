@@ -18,6 +18,7 @@ module CryptKeeperProviders
     #
     # Returns an encrypted string
     def encrypt(value)
+      return if value.nil?
       Base64.encode64 escape_and_execute_sql(
         ["SELECT AES_ENCRYPT(?, ?)", value, key]).first
     end
@@ -26,6 +27,7 @@ module CryptKeeperProviders
     #
     # Returns a plaintext string
     def decrypt(value)
+      return if value.nil?
       escape_and_execute_sql(
         ["SELECT AES_DECRYPT(?, ?)", Base64.decode64(value), key]).first
     end
