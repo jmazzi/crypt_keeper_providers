@@ -18,16 +18,16 @@ module CryptKeeperProviders
     #
     # Returns an encrypted string
     def encrypt(value)
-      value = Base64.encode64(value)
-      escape_and_execute_sql(["SELECT AES_ENCRYPT(?, ?)", value, key]).first
+      Base64.encode64 escape_and_execute_sql(
+        ["SELECT AES_ENCRYPT(?, ?)", value, key]).first
     end
 
     # Public: Decrypts a string
     #
     # Returns a plaintext string
     def decrypt(value)
-      value = Base64.decode64(value)
-      escape_and_execute_sql(["SELECT AES_DECRYPT(?, ?)", value, key]).first
+      escape_and_execute_sql(
+        ["SELECT AES_DECRYPT(?, ?)", Base64.decode64(value), key]).first
     end
 
     private
