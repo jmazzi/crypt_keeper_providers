@@ -22,11 +22,19 @@ module CryptKeeperProviders
         subject.encrypt(plain_text).should_not == plain_text
         subject.encrypt(plain_text).should_not be_empty
       end
+
+      it "should not encrypt nil" do
+        subject.encrypt(nil).should be_nil
+      end
     end
 
     describe "#decrypt" do
       it "should decrypt the string" do
         subject.decrypt(cipher_text).should == plain_text
+      end
+
+      it "should not decrypt nil" do
+        subject.decrypt(nil).should be_nil
       end
     end
   end
