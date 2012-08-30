@@ -30,6 +30,7 @@ module CryptKeeperProviders
     #
     # Returns a string
     def encrypt(value)
+      return if value.nil?
       aes.encrypt
       aes.key = key
       iv      = rand.to_s
@@ -41,6 +42,7 @@ module CryptKeeperProviders
     #
     # Returns a string
     def decrypt(value)
+      return if value.nil?
       iv, value = Base64::decode64(value.to_s).split(SEPARATOR)
       aes.decrypt
       aes.key = key

@@ -28,6 +28,10 @@ module CryptKeeperProviders
         encrypted.should_not be_nil
         encrypted.should_not be_empty
       end
+
+      it "should not encrypt nil" do
+        subject.encrypt(nil).should be_nil
+      end
     end
 
     describe "#decrypt" do
@@ -37,6 +41,10 @@ module CryptKeeperProviders
 
       it "should decrypt the string" do
         decrypted.should == 'string'
+      end
+
+      it "should not decrypt nil" do
+        subject.decrypt(nil).should be_nil
       end
     end
   end
