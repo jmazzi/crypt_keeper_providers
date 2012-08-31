@@ -16,7 +16,7 @@ module CryptKeeperProviders
     #
     #   options - A hash of options. :key is required
     def initialize(options = {})
-      @aes         = ::OpenSSL::Cipher::Cipher.new("AES-256-CBC")
+      @aes         = ::OpenSSL::Cipher.new("AES-256-CBC")
       @aes.padding = 1
 
       key = options.fetch(:key) do
@@ -33,7 +33,7 @@ module CryptKeeperProviders
       return if value.nil?
       aes.encrypt
       aes.key = key
-      iv      = rand.to_s
+      iv      = aes.random_iv
       aes.iv  = iv
       Base64::encode64("#{iv}#{SEPARATOR}#{aes.update(value.to_s) + aes.final}")
     end
